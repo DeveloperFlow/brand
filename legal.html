@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal</title>
+    <link rel="stylesheet" href="lib/css/literal.css">
+    <link rel="stylesheet" href="css/general.css">
+    <script defer src="lib/js/basics.js"></script>
+    <script defer src="js/basic-adjust.js"></script>
+    <style>
+        #section-1{background-image:url("img/section1-bg.jpg")}
+        #about-us-heading{max-width:500px; background-color: #f00; border-radius: 8px; color:#fff;
+        font-size:20px; line-height: 30px;}
+    </style>
+    <script>
+        window.onload = function(){
+            adjustMenu()
+        }
+    </script>
+</head>
+<body class="my-fonts">
+    <div id='menu' class='menu absolute fixed top left full-width upfront flex vcenter space-around'>
+        <div class="menu-item"><a href="index.html"><img class ="site-logo" src="img/logo.png"></a></div>
+        <span class="menu-item none" id="menu-ini">&#8801;</span>
+        <a class="menu-item center-text block button bs" href="about-us.html">
+            <div class="center text">About Us</div>
+        </a>
+        <a class="menu-item center-text block button bs" id="legal" href="legal.html">
+            <div class="center text">Legal</div>
+        </a>
+        <a class="menu-item center-text block button bs" href="products.html">
+            <div class="center text">Products</div>
+        </a>
+    </div>
+    <div id="ss-menu" class="closed"></div>
+    <div id="main">
+        <div id="section-1" class="minor-pad">
+            <h1 class="center-text webkit-bg-clip-text transparent site-gradient">Terms and condition</h1>
+            <div class="minor-pad auto-margin" id="about-us-heading">
+                The only terms and condition that apply to me and the users of this website is that if you 
+                really think that I am up to the task for your web project, then you can try me out and prove your self
+                right
+            </div>
+        </div>
+    </div>
+</body>
+</html>

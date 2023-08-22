@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="lib/css/literal.css">
+    <link rel="stylesheet" href="lib/css/ui.css">
+    <link rel="stylesheet" href="css/general.css">
+    <script defer src="lib/js/basics.js"></script>
+    <script defer src="lib/js/ui.js"></script>
+    <script defer src="js/basic-adjust.js"></script>
+    <style>
+    /*welcome page*/
+    #welcome-node{display:flex; justify-content:center; align-items:center}
+    #welcome-node #animation-container{margin:auto; text-align: center;}
+    #welcome-node span{color:#000; font-size: 30px; font-weight: bold;}
+    #welcome-node .name{color:#f00; -webkit-text-fill-color: #fff; -webkit-text-stroke:1px #f00}
+    #welcome-node .box{margin:auto}
+    #welcome-node .box button{width:20px; height:20px; background-color: #f00; border:none;
+    outline:none; position: relative; border-radius:50%}
+    #welcome-node .box button.r{animation-name:r; animation-duration: 2s;animation-iteration-count: infinite;}
+    #welcome-node .box button.l{animation-name:l; animation-duration: 2s; 
+    animation-iteration-count: infinite; background-color: #fff; border:1px solid #f00}
+    @keyframes r{
+        0%{right:0px}
+        50%{right:20px; border:1px solid #f00; background-color: #fff;}
+        100%{right:0px; border:1px solid #f00; background-color: #fff;}
+    }
+    @keyframes l{
+        0%{left:0px}
+        50%{left: 20px; background-color: #f00;}
+        100%{left:0px; background-color: #f00;}
+    }           
+    @media only screen and (max-width:400px){
+        #welcome-node span{font-size: 20px;}
+        #welcome-node .box button{width:15px; height:15px}
+        @keyframes r{
+            0%{right:0px}
+            50%{right:15px}
+            100%{right:0px}
+        }
+        @keyframes l{
+            0%{left:0px}
+            50%{left:15px}
+            100%{left:0px}
+        }
+    }
+    body.not-loaded #menu{display:none}
+    body.not-loaded #main{display:none}
+    body.not-loaded #footer{display:none}
+
+        .section-1{background-image:url("img/section1-bg.jpg")}
+        .section-1-main{min-height:100vh}
+        .section-1-main .item{width:100%; display:inline-flex; margin:auto;}
+        .section-1-main .item img{width:60%; height:auto; max-height:400px}
+        .section-1-main .item .desc{padding:1%; background-color:rgba(0,0,0,0.5);
+        margin-left:3%; width:36%; color:#fff}
+        .slider-container .slide{overflow:hidden; max-height:none; height:auto}
+
+        #section-2{padding:2%}
+        #section-2 .what-we-do{max-width:900px}
+        #section-2 .scroll-n-view.visible,#section-3 .scroll-n-view.visible{
+            animation-name:from-left; animation-duration:1s;
+        }
+        #section-2 .flex.right{justify-content:right;}
+        #section-2 .what-we-do span{display:block; margin-left:4%; width:50%; font-size:20px; line-height:40px}
+        #section-2 .what-we-do img{width:40%; height:auto;}
+
+        #section-3{padding:2%}
+        #section-3 .enjoyment{padding:2%; margin-top:2%}
+        #section-3 .enjoyment img{width:30%; height:auto; max-height:300px;}
+        #section-3 .enjoyment span{width:65%; font-size: 20px; line-height: 40px;}
+
+        #section-4 img{width:45%; max-height: 400px;}
+        #section-4 #contact-us{width:50%; margin-left:5%;}
+        #section-4 #message-box{max-width:500px; margin:auto}
+        #section-4 #other{max-width: 500px; margin:auto; justify-content: center; margin-top:3%}
+        #section-4 textarea{width:100%; padding:2%; border-color: #f00;}
+        #section-4 #other img{width:100%; max-width: 30px;}
+        #section-4 #other a{margin-left:2%}
+
+        @media only screen and (max-width:700px){
+            #section-2 .flex{display:block;}
+            #section-2 .what-we-do{margin-top:10%}
+            #section-2 .what-we-do.flex span{margin:auto; width:97%; font-size:17px; line-height:30px; text-align:center}
+            #section-2 .what-we-do.flex img{width:95%; margin:auto; max-height:400px; display:block}
+
+            #section-3 .flex{display: block;}
+            #section-3 .enjoyment.flex img{width:95%; margin:auto;}
+            #section-3 .enjoyment.flex span{width:97%; margin:auto; font-size:17px; line-height:30px; text-align: center;}
+
+            #section-4{display: block;}
+            #section-4 img{width:95%; display: block; margin:auto}
+            #section-4 #contact-us{width:95%; margin:auto}
+        }
+        @media only screen and (max-width:500px){
+            .section-1-main .item{display:inline-block}
+            .section-1-main .item img{width:100%;}
+            .section-1-main .item .desc{margin:auto; width:100%;}
+        }
+        @media only screen and (max-width:250px){
+            #menu{font-size:13px}
+        }
+        @keyframes from-left{
+            0%{translate:-200px}
+            100%{translate:0px}
+        }
+    </style>
+    <script>
+        var StartTime = Number(new Date())
+        window.onload = function(){
+            var sectionSlider; section1Ini(); section2Ini(); iniActionBlock(); removeLoader()
+            function removeLoader(){
+                var minLoadTime = 3
+                var finish = Number(new Date())
+                var loadTime = finish - StartTime
+                minLoadTime *= 1000
+                if(loadTime >= minLoadTime){r()}
+                else{setTimeout(r,minLoadTime - loadTime)}
+                function r(){
+                    remove(document.getElementById("welcome-node")); changeClass(document.body,"not-loaded","")
+                    sectionSlider.display(); sectionSlider.slideShow(); adjustMenu(); 
+                }
+            }
+            function section1Ini(){
+                var section1Main = document.getElementById('section-1-main')
+                var sectionChildren = section1Main.children
+                sectionSlider = new slider(section1Main)
+                for(var i = 0; i < sectionChildren.length; i++){
+                    sectionSlider.add(sectionChildren[i]); i--
+                }
+            }
+            function section2Ini(){scrollNShow()}
+        }
+    </script>
+</head>
+<body class='my-fonts not-loaded'>
+    <div style='position:fixed; width:100%; height:100%;' id='welcome-node'>
+        <div id='animation-container'>
+            <span class='name'>DeveloperFlow</span>
+            <div class='box'>
+                <button class='round l'></button>
+                <button class='round r'></button>
+            </div>
+        </div>
+    </div>
+    <div id='menu' class='menu absolute fixed top left full-width upfront flex vcenter space-around'>
+        <div class="menu-item"><a href="index.html"><img class ="site-logo" src="img/logo.png"></a></div>
+        <span class="menu-item none" id="menu-ini">&#8801;</span>
+        <a class="menu-item center-text block button bs" href="about-us.html">
+            <div class="center text">About Us</div>
+        </a>
+        <a class="menu-item center-text block button bs" id="legal" href="legal.html">
+            <div class="center text">Legal</div>
+        </a>
+        <a class="menu-item center-text block button bs" href="products.html">
+            <div class="center text">Products</div>
+        </a>
+    </div>
+    <div id="ss-menu" class="closed"></div>
+    <div class='main-tab' id='main'>
+        <div class='section-1'>
+            <div class='section-1-main minor-pad' id='section-1-main'>
+                <div class="flex vcenter item section-1-slider-item">
+                    <img src="img/section-1/1.jpg">
+                    <h3 class="desc">
+                        This website is just for show and it 
+                        is just a display of my front-development skills, I can design a website just like this one
+                        if you want or I could design something completely different or similar to this one, after 
+                        which I will take this one down
+                    </h3>
+                </div>
+                <div class="flex vcenter item section-1-slider-item">
+                    <img src="img/section-1/ux-ui.jpg">
+                    <h3 class="desc">
+                        While there is nothing functional about this web page that it is becuase it is hosted on github,
+                        so I do not have full control over the back end functionality of this website, but I can still 
+                        build a fully functional website from start to finish, Anything you want...
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div id='section-2'>
+            <h1 class="webkit-bg-clip-text site-gradient transparent center-text outlined-text">
+                What Exactly Is This ?
+            </h1>
+            <div class='what-we-do flex vcenter scroll-n-view'>
+                <img src='img/what-we-do/1.jpg'>
+                <span>
+                    This webpage is a demo of a company's landing page, if you like this design I can give it to you, then
+                    customize it for your specific needs be it a brand's website, business website or any other wonderful
+                    idea you might have in mind
+                </span>
+            </div>
+            <div class='space-up flex vcenter right'>
+                <div class='what-we-do flex vcenter scroll-n-view'>
+                    <img src='img/what-we-do/2.jpg'>
+                    <span>
+                        If you are not really sure of what you want it's perfectly fine, You can consult me, and by
+                        telling me the things that you do know, I am sure we can discover the right solution for you
+                    </span>
+                </div>
+            </div>
+            <div class='what-we-do flex vcenter scroll-n-view space-up'>
+                <img src='img/what-we-do/3.jpg'>
+                <span>
+                    I understand that we all have different needs, especially when it comes to a website, so If this 
+                    appears to be far from your needs it is not really a problem as I am really flexible with my work
+                    and I am sure that I can help you bring that idea to life
+                </span>
+            </div>
+            <div class='space-up flex vcenter right'>
+                <div class='what-we-do flex vcenter scroll-n-view'>
+                    <img src='img/what-we-do/4.jpg'>
+                    <span>
+                        So whatever type of website, web application or Saas that you need, with my set of skills and
+                        experience, I am very confident that I can be of help in developing your project
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="section-3" class="minor-pad">
+            <h1 class="webkit-bg-clip-text transparent site-gradient center-text outlined-text">
+                Why Choose Me?
+            </h1>
+            <div class='enjoyment flex vcenter apart scroll-n-view'>
+                <span>
+                    My goal as a freelance web developer is to make sure that I satisfy the needs of every client 
+                    that I work with, I always strive to make sure that I provide the best possible solution to every 
+                    problem that I am tasked with solving
+                </span>
+                <img src="img/enjoyment/1.jpg">
+            </div>
+            <div class='enjoyment flex vcenter apart scroll-n-view'>
+                <span>
+                    So with my attitude towards my work and my skill and expertise at it, I really am very confident
+                    that I would be a valuable asset to your web development project
+                </span>
+                <img src="img/enjoyment/2.jpg">
+            </div>
+        </div>
+        <div id="section-4" class="flex vcenter hfull minor-pad">
+            <img src="img/section-4.jpg">
+            <div id="contact-us">
+                <h2 class="center-text webkit-bg-clip-text site-gradient transparent">You Can Reach out to us</h2>
+                <div id="message-box">
+                    <div class="minor-pad">This too is part of the demo, it's function in the real website is to send
+                        a message to an email address of your choosing, it provides a way for visitors to leave you a 
+                        message
+                    </div>
+                    <div>
+                        <label class="block">Your email address</label>
+                        <input class="input curved" placeholder="email address" type="email">
+                    </div>
+                    <div class="space-up">
+                        <label class="block">Your Message</label>
+                        <textarea></textarea>
+                    </div>
+                    <div class="space-up right-text">
+                        <button class="button curved pointer sa">Send Message</button>
+                    </div>
+                </div>
+                <div class="center-text space-up">Or You can also reach out through any of these platforms</div>
+                <div id="other" class="flex vcenter space-up">
+                    <a class="pointer sa"><img class="icon" src="img/email.png"></a>
+                    <a class="pointer sa"><img class="icon" src="img/fb.png"></a>
+                    <a class="pointer sa"><img class="icon" src="img/phone.png"></a>
+                    <a class="pointer sa"><img class="icon" src="img/ig.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="minor-pad">
+        <img class="block auto-margin site-logo" src="img/logo.png">
+        <div class="flex vcenter links" id="footer-items">
+            <div id="quick-links">
+                <div><a href="about-us.html">About Us</a></div>
+                <div class="space-up"><a href="products.html">Products and Services</a></div>
+                <div class="space-up"><a href="legal.html">Legal</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

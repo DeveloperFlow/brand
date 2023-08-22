@@ -1,0 +1,36 @@
+body{margin:0; padding:0;}
+a{text-decoration: none;}
+.site-logo{max-width:250px}
+.button{border:1px solid #f00; padding:1% 2% 1% 2%}
+.input{border:1px solid #f00; padding:2%; width:100%}
+*{color:#444}
+img{object-fit: contain;}
+
+/*site themes*/
+.theme-bg{background-color:#f00}
+.theme2-bg{background-color: #fff;}
+.site-gradient{background-image:linear-gradient(45deg,#f00,#fff)}
+.outlined-text{-webkit-text-stroke: 1px #c8c8ff;}
+
+/*menu -items*/
+#menu{z-index:10; background-color:#f5f5f5}
+#menu-ini{display:none; font-size:20px; cursor:pointer}
+.menu{padding:1%}
+.menu *{color:#444}
+.menu .menu-item{float:left;}
+.menu .menu-item.button{padding:0.5% 2%; border-radius: 25px;}
+/*small screens*/
+body.ss .menu-item.bs{display:none}
+body.ss #menu-ini{display:block}
+body.ss #menu{justify-content: space-between;}
+body.ss #ss-menu .menu-item{display:block; margin-top:2%;}
+body.ss #ss-menu{position:fixed; width: 100%; z-index: 10; background: #fff; padding: 3%; max-height: 50%;
+overflow: auto;
+}
+body.ss #ss-menu.closed{display:none}
+
+/*footer*/
+#footer{border:2px solid #f00; border-radius: 8px;}
+#footer .space-up{margin-top:4%}
+#footer #footer-items{justify-content: space-evenly;}
+#footer a{text-decoration: underline;}
