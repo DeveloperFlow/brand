@@ -1,0 +1,7 @@
+.service-list{padding:2%;}
+.service-list img{width:100%; height:auto; max-height: 250px; object-fit: cover;}
+.service-list .grid-item{height:auto; border-radius: 8px; border:1px solid #c8c8ff; padding:2%;
+box-shadow: 2px 2px 10px #c8c8ff; cursor:pointer}
+
+.view-service{padding:2%; max-width:500px; margin:auto}
+.minitab .cancel-btn{border:none; background-color: transparent; font-size: 20px; font-weight: bold;}

@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Welcome To Yotta Electronics</title>
     <link rel="stylesheet" href="lib/css/literal.css">
     <link rel="stylesheet" href="lib/css/ui.css">
     <link rel="stylesheet" href="css/general.css">
     <script defer src="lib/js/basics.js"></script>
     <script defer src="lib/js/ui.js"></script>
     <script defer src="js/basic-adjust.js"></script>
+    <script defer src="js/faq.js"></script>
     <style>
     /*welcome page*/
     #welcome-node{display:flex; justify-content:center; align-items:center}
@@ -51,61 +52,55 @@
     body.not-loaded #main{display:none}
     body.not-loaded #footer{display:none}
 
-        .section-1{background-image:url("img/section1-bg.jpg")}
-        .section-1-main{min-height:100vh}
-        .section-1-main .item{width:100%; display:inline-flex; margin:auto;}
-        .section-1-main .item img{width:60%; height:auto; max-height:400px}
-        .section-1-main .item .desc{padding:1%; background-color:rgba(0,0,0,0.5);
-        margin-left:3%; width:36%; color:#fff}
-        .slider-container .slide{overflow:hidden; max-height:none; height:auto}
+        #section-1{background-image:url("img/section1-bg.jpg")}
+        #section-1-wrapper{background-color: rgba(255,0,0,0.3);}
+        #section-1-main{width:50%; margin-right: 3%;}
+        #section-1-main h1{font-size: 50px; margin-bottom:0; color:#fff}
+        #section-1-slide{width:47%;}
+        .slider-container .slider-indicator .item.current{background-color: #f00 !important;}
+        .slider-container .slide img{object-fit: cover; border-radius: 8px;}
+        .slider-container .slide{max-height: 400px;}
 
-        #section-2{padding:2%}
-        #section-2 .what-we-do{max-width:900px}
-        #section-2 .scroll-n-view.visible,#section-3 .scroll-n-view.visible{
-            animation-name:from-left; animation-duration:1s;
-        }
-        #section-2 .flex.right{justify-content:right;}
-        #section-2 .what-we-do span{display:block; margin-left:4%; width:50%; font-size:20px; line-height:40px}
-        #section-2 .what-we-do img{width:40%; height:auto;}
+        #service-list{padding:2%;}
+        #service-list img{width:100%; height:auto; max-height: 250px; object-fit: cover;}
+        #service-list .grid-item{height:auto; border-radius: 8px; border:1px solid #c8c8ff; padding:2%;
+        box-shadow: 2px 2px 10px #c8c8ff; cursor:pointer}
 
-        #section-3{padding:2%}
-        #section-3 .enjoyment{padding:2%; margin-top:2%}
-        #section-3 .enjoyment img{width:30%; height:auto; max-height:300px;}
-        #section-3 .enjoyment span{width:65%; font-size: 20px; line-height: 40px;}
+        #chief-engr{width:45%; max-height: 400px; object-fit: cover;}
+        #enjoyment{width:50%;}
+        #faq{max-width:500px; margin:auto}
+        #faq .q{border:1px solid #f00; border-left:none; border-right:none}
+        .faq{padding:3%}
+        .faq.closed .answer{display: none;}
+        .faq.closed .q .icon{transform: rotate(180deg);}
 
         #section-4 img{width:45%; max-height: 400px;}
         #section-4 #contact-us{width:50%; margin-left:5%;}
         #section-4 #message-box{max-width:500px; margin:auto}
-        #section-4 #other{max-width: 500px; margin:auto; justify-content: center; margin-top:3%}
         #section-4 textarea{width:100%; padding:2%; border-color: #f00;}
-        #section-4 #other img{width:100%; max-width: 30px;}
-        #section-4 #other a{margin-left:2%}
 
         @media only screen and (max-width:700px){
-            #section-2 .flex{display:block;}
-            #section-2 .what-we-do{margin-top:10%}
-            #section-2 .what-we-do.flex span{margin:auto; width:97%; font-size:17px; line-height:30px; text-align:center}
-            #section-2 .what-we-do.flex img{width:95%; margin:auto; max-height:400px; display:block}
-
-            #section-3 .flex{display: block;}
-            #section-3 .enjoyment.flex img{width:95%; margin:auto;}
-            #section-3 .enjoyment.flex span{width:97%; margin:auto; font-size:17px; line-height:30px; text-align: center;}
+            #section-2-main{display:block;}
+            #chief-engr{width:100%}
+            #enjoyment{width:100%}
 
             #section-4{display: block;}
             #section-4 img{width:95%; display: block; margin:auto}
             #section-4 #contact-us{width:95%; margin:auto}
         }
+        @media only screen and (max-width:800px){
+            #section-1-wrapper{display:block}
+            #section-1 h1{font-size:40px}
+            #section-1-slide{width:100%; margin-top:2%}
+            #section-1-main{margin:auto; width:100%; text-align: center;}
+            #section-1-main .right-text{text-align: center;}
+            #section-1-main button{font-size:16px}
+        }
         @media only screen and (max-width:500px){
-            .section-1-main .item{display:inline-block}
-            .section-1-main .item img{width:100%;}
-            .section-1-main .item .desc{margin:auto; width:100%;}
+            #section-1-wrapper h1{font-size: 30px;}
         }
         @media only screen and (max-width:250px){
             #menu{font-size:13px}
-        }
-        @keyframes from-left{
-            0%{translate:-200px}
-            100%{translate:0px}
         }
     </style>
     <script>
@@ -121,11 +116,11 @@
                 else{setTimeout(r,minLoadTime - loadTime)}
                 function r(){
                     remove(document.getElementById("welcome-node")); changeClass(document.body,"not-loaded","")
-                    sectionSlider.display(); sectionSlider.slideShow(); adjustMenu(); 
+                    sectionSlider.display(); sectionSlider.slideShow(20000); adjustMenu(); 
                 }
             }
             function section1Ini(){
-                var section1Main = document.getElementById('section-1-main')
+                var section1Main = document.getElementById('section-1-slide')
                 var sectionChildren = section1Main.children
                 sectionSlider = new slider(section1Main)
                 for(var i = 0; i < sectionChildren.length; i++){
@@ -156,112 +151,127 @@
             <div class="center text">Legal</div>
         </a>
         <a class="menu-item center-text block button bs" href="products.html">
-            <div class="center text">Products</div>
+            <div class="center text">Services</div>
         </a>
     </div>
     <div id="ss-menu" class="closed"></div>
     <div class='main-tab' id='main'>
-        <div class='section-1'>
-            <div class='section-1-main minor-pad' id='section-1-main'>
-                <div class="flex vcenter item section-1-slider-item">
+        <div id="section-1">
+            <div id="section-1-wrapper" class="flex vcenter minor-pad">
+                <div id="section-1-main">
+                    <h1 style="margin-top:0">
+                        You Have Reached Yotta Electronics
+                    </h1>
+                    <h2 class="white" style="margin-top: 0;">The Solution to all your electrical problems</h2>
+                    <div class="white-bg minor-pad bit-curved" style="margin-top:0">
+                        Contact us now and get rid of that bugging electrical problem
+                    </div>
+                    <div class="space-up right-text">
+                        <a class="button curved white-bg pointer pointer-next" href="products.html">See Our Services</a>
+                    </div>
+                </div>
+                <div id='section-1-slide'>
                     <img src="img/section-1/1.jpg">
-                    <h3 class="desc">
-                        This is a demo of a business website, and all these texts are placeholders
-                        that can be edited by the amazing person who really appreciates this website 
-                        and would like this website for their business or brand<br/>
-                        Also if you like this website but you think that it would need some changes inorder to meet your needs, 
-                        then you should know that I am available and willing to review 
-                        this website and make any changes that you may want me to
-                    </h3>
-                </div>
-                <div class="flex vcenter item section-1-slider-item">
-                    <img src="img/section-1/2.png">
-                    <h3 class="desc">
-                        Everything on this website is editable through a custom content management system, the images,
-                        site logo, background images, fonts, fonts sizes are all customizable so that you can tailor
-                        this website to your specific needs
-                    </h3>
-                </div>
-                <div class="flex vcenter item section-1-slider-item">
+                    <img src="img/section-1/3.jpg">
                     <img src="img/section-1/ux-ui.jpg">
-                    <h3 class="desc">
-                         If this isn't what you want for your business or brand, then I am also very 
-                        confident that I will be able to turn your idea into a fully functional website!
-                        <br/>
-                        I am also very good with deadlines and I always deliver my jobs on time without 
-                        compromising quality, because I do believe in quality
-                    </h3>
                 </div>
             </div>
         </div>
-        <div id='section-2'>
-            <h1 class="webkit-bg-clip-text site-gradient transparent center-text outlined-text">
-                What Exactly Is This ?
+        <div id="services">
+            <h1 class="webkit-bg-clip-text site-gradient center-text transparent">
+                Services That We Offer
             </h1>
-            <div class='what-we-do flex vcenter scroll-n-view'>
-                <img src='img/what-we-do/1.jpg'>
-                <span>
-                    This webpage is a demo of a company's landing page, if you like this design I can give it to you, then
-                    customize it for your specific needs be it a brand's website, business website or any other wonderful
-                    idea you might have in mind, and after giving it to I will take down this demo version so that your website
-                    remains unique on the web
-                </span>
-            </div>
-            <div class='space-up flex vcenter right'>
-                <div class='what-we-do flex vcenter scroll-n-view'>
-                    <img src='img/what-we-do/2.jpg'>
-                    <span>
-                        If you are not really sure of what you want it's perfectly fine, You can consult me, and by
-                        telling me the things that you do know, I am sure we can discover the right solution for you
-                    </span>
+            <div id="service-list" class="grid-3 grid">
+                <div class="grid-item">
+                    <img src="img/what-we-do/1.jpg">
+                    <div class="oneline ellipsis">Solar Panel Installation / Maintainance</div>
                 </div>
+                <div class="grid-item">
+                    <img src="img/what-we-do/2.jpg">
+                    <div class="oneline ellipsis">Builiding Wiring</div>
+                </div>
+                <div class="grid-item">
+                    <img src="img/what-we-do/3.jpg">
+                    <div class="oneline ellipsis">Power Generator Installation and maintainance</div>
+                </div>
+                <div class="grid-item">
+                    <img src="img/what-we-do/4.jpg">
+                    <div class="oneline ellipsis">Air conditioner installation and maintainance</div>
+                </div>
+                <div class="grid-item">
+                    <img src="img/what-we-do/5.jpg">
+                    <div class="oneline ellipsis">Cinematic / Home Television installation</div>
+                </div>
+                <div class="grid-item">
+                    <img src="img/what-we-do/6.jpg">
+                    <div class="oneline ellipsis">Satellite Dish installation and maintainance</div>
+                </div>
+                <div class="clear-fix"></div>
             </div>
-            <div class='what-we-do flex vcenter scroll-n-view space-up'>
-                <img src='img/what-we-do/3.jpg'>
-                <span>
-                    I understand that we all have different needs, especially when it comes to a website, so If this 
-                    appears to be far from your needs, no biggie!  I am really flexible with my work
-                    and I am sure that I can help you bring that idea to life
-                </span>
+            <div class="center-text">
+                <a class="button curved hover-next" href="products.html" style="display:inline-block">See All Services</a>
             </div>
-            <div class='space-up flex vcenter right'>
-                <div class='what-we-do flex vcenter scroll-n-view'>
-                    <img src='img/what-we-do/4.jpg'>
-                    <span>
-                        So whatever type of website, web application or Saas that you need, with my set of skills and
-                        experience, I am very confident that I can be of help in developing your project
-                    </span>
+        </div>
+        <div id='section-2' class="space-up">
+            <div id="section-2-main" class="flex vcenter apart">
+                <img src="img/enjoyment/1.jpg" id="chief-engr">
+                <div id="enjoyment">
+                    <h2 class="webkit-bg-clip-text site-gradient-2 transparent center-text">
+                        What we are all about
+                    </h2>
+                    <div class="minor-pad center-text">
+                        YottaElectronics is an electronics installation and maintainance service providing company,
+                        we focus on providing our customers with the best electronics installation and maintainance
+                        services
+                    </div>
+                    <h2 class="webkit-bg-clip-text site-gradient-2 transparent center-text">
+                        Frequently Asked Questions
+                    </h2>
+                    <div id="faq">
+                        <div class="faq">
+                            <div class="drop-down flex apart minor-pad q pointer vcenter">
+                                <div>How Does It Work?</div>
+                                <img src="img/drop.png" class="icon" style="max-width:35px">
+                            </div>
+                            <div class="answer minor-pad">
+                                If you need our services you can contact us through the contact form, when you
+                                contact us you can say what services you need from us and then we will reply accordingly,
+                                when we both agree on the terms of the services, then depending on the job the appropriate
+                                action will be taken and we get paid after the job is done
+                            </div>
+                        </div>
+                        <div class="faq">
+                            <div class="drop-down flex apart minor-pad q pointer vcenter">
+                                <div>Can i pay after you do your job</div>
+                                <img src="img/drop.png" class="icon" style="max-width:35px">
+                            </div>
+                            <div class="answer minor-pad">
+                                As a matter of fact we only collect payment after delivery, so 
+                                <b>Yes, you can pay us after we do the job</b>
+                            </div>
+                        </div>
+                        <div class="faq">
+                            <div class="drop-down flex apart minor-pad q pointer vcenter">
+                                <div>Do you also offer your services to cooperations or companies</div>
+                                <img src="img/drop.png" class="icon" style="max-width:35px">
+                            </div>
+                            <div class="answer minor-pad">
+                                Yes we offer our services to cooperations and companies, As a matter of fact
+                                there is no limitations to who we offer our services to
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="section-3" class="minor-pad">
-            <h1 class="webkit-bg-clip-text transparent site-gradient center-text outlined-text">
-                Why Choose Me?
-            </h1>
-            <div class='enjoyment flex vcenter apart scroll-n-view'>
-                <span>
-                    My goal as a freelance web developer is to make sure that I satisfy the needs of every client 
-                    that I work with, I always strive to make sure that I provide the best possible solution to every 
-                    problem that I am tasked with solving
-                </span>
-                <img src="img/enjoyment/1.jpg">
-            </div>
-            <div class='enjoyment flex vcenter apart scroll-n-view'>
-                <span>
-                    So with my attitude towards my work and my skill and expertise at it, I really am very confident
-                    that I would be a valuable asset to your web development project
-                </span>
-                <img src="img/enjoyment/2.jpg">
-            </div>
-        </div>
-        <div id="section-4" class="flex vcenter hfull minor-pad">
+        <div id="section-4" class="flex vcenter minor-pad">
             <img src="img/section-4.jpg">
             <div id="contact-us">
-                <h2 class="center-text webkit-bg-clip-text site-gradient transparent">You Can Reach out to us</h2>
+                <h2 class="center-text webkit-bg-clip-text site-gradient-2 transparent">Contact us</h2>
                 <div id="message-box">
-                    <div class="minor-pad">This too is part of the demo, it's function in the real website is to send
-                        a message to an email address of your choosing, it provides a way for visitors to leave you a 
-                        message
+                    <div class="minor-pad">
+                        You can contact us through this form, you can state you problem or what you would like us
+                        to do
                     </div>
                     <div>
                         <label class="block">Your email address</label>
@@ -272,15 +282,14 @@
                         <textarea></textarea>
                     </div>
                     <div class="space-up right-text">
-                        <button class="button curved pointer sa">Send Message</button>
+                        <button class="button curved pointer" id="send-msg">Send Message</button>
+                        <script>
+                            (function(){
+                                var send = document.getElementById("send-msg")
+                                send.onclick = function(){customAlert("Message Sent")}
+                            }())
+                        </script>
                     </div>
-                </div>
-                <div class="center-text space-up">Or You can also reach out through any of these platforms</div>
-                <div id="other" class="flex vcenter space-up">
-                    <a class="pointer sa"><img class="icon" src="img/email.png"></a>
-                    <a class="pointer sa"><img class="icon" src="img/fb.png"></a>
-                    <a class="pointer sa"><img class="icon" src="img/phone.png"></a>
-                    <a class="pointer sa"><img class="icon" src="img/ig.png"></a>
                 </div>
             </div>
         </div>
@@ -292,6 +301,11 @@
                 <div><a href="about-us.html">About Us</a></div>
                 <div class="space-up"><a href="products.html">Products and Services</a></div>
                 <div class="space-up"><a href="legal.html">Legal</a></div>
+            </div>
+            <div id="other" class="flex vcenter">
+                <a target="_blank" href="https://www.upwork.com/freelancers/~018563bf28c5aafcda"><img class="icon" src="img/fb.png"></a>
+                <a target="_blank" href="https://www.upwork.com/freelancers/~018563bf28c5aafcda"><img class="icon" src="img/phone.png"></a>
+                <a target="_blank" href="https://www.upwork.com/freelancers/~018563bf28c5aafcda"><img class="icon" src="img/ig.png"></a>
             </div>
         </div>
     </div>
