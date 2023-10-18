@@ -105,7 +105,8 @@ animation-timing-function: ease-in-out;}
 input.okay{border-color:#0f0 !important}
 *.normal:focus{outline:none}
 .option-icon{font-size:16px}
-.back-btn,.nav-btn{font-size:20px; padding:7.5px 15.1px}
+.back-btn,.nav-btn{font-size:18px; width:30px; height:30px; display:flex; justify-content: center; align-items: center;
+}
 .code-symbol{font-size:15px; padding:4px 2px;}
 .parental-display{border-left:1px solid #aaa; padding-left:5%;
 margin-left:2%}

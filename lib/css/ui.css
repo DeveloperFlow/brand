@@ -13,7 +13,11 @@ z-index:5}
 .semitab{width: 100%; max-width: 500px; height: 100%; overflow: auto;}
 /*mini tabs*/
 .minitab{width:100%; overflow:auto; max-height:90%; z-index:5; 
-    background-color: #fff; padding:1%; border-radius: 8px;}
+    background-color: #fff; padding:1%; border-radius: 8px;
+}
+.minitab .cancel-btn{font-size:16px; width:30px; height:30px; border-radius:25px; border:1px solid #f00;
+background-color:#fff
+}
 .bigscreen-minitab{max-width:700px; height:600px; margin:auto; position: relative;}
 .smallscreen-minitab{border-radius:25px 25px 0px 0px; padding:3%}
 
