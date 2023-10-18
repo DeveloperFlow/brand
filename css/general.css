@@ -1,7 +1,7 @@
 body{margin:0; padding:0;}
 a{text-decoration: none;}
 .site-logo{max-width:40px; width:10vw}
-.button{border:1px solid #f00; padding:1% 2% 1% 2%}
+.button{border:1px solid #f00; padding:2% 5% 2% 5%; background-color: #fff;}
 .input{border:1px solid #f00; padding:2%; width:100%}
 *{color:#444}
 img{object-fit: contain;}
