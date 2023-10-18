@@ -43,7 +43,7 @@ function displayService(service,listContainer){
     function openService(){
         if(!serviceTab){
             serviceTab = new miniTab()
-            var container = document.createElement("div"); container.className = "view-service"
+            var container = document.createElement("div"); container.className = "view-service relative"
 
             //header
             var header = document.createElement("h2");
@@ -53,14 +53,16 @@ function displayService(service,listContainer){
             //email address
             var email = document.createElement("div");
             var emailLabel = document.createElement("label"); emailLabel.innerHTML = "Your email address"
+            emailLabel.className = "white"
             var emailInput = document.createElement("input"); emailInput.className = "input curved"
             emailInput.placeholder = "Your Email Address"
             append(email,[emailLabel,emailInput])
 
             //message
-            var message = document.createElement("div")
+            var message = document.createElement("div");
             var messageLabel = document.createElement("label"); messageLabel.innerHTML = "Your Message"
-            var messageInput = document.createElement("textarea"); messageInput.className = "input"
+            messageLabel.className = "white"
+            var messageInput = document.createElement("textarea"); messageInput.className = "input curved"
             messageInput.placeholder = "Your Message"; messageInput.style.height = "200px"
             append(message,[messageLabel,messageInput])
 
@@ -74,8 +76,15 @@ function displayService(service,listContainer){
             addEvent(sendBtn,"click",function(){customAlert("Message Sent")})
             addEvent(cancelBtn,"click",function(){serviceTab.close()})
 
-            append(container,[header,email,message,send])
-            serviceTab.tab.appendChild(container)
+            //curtain
+            var curtain = document.createElement("div"); curtain.className = "absolute top left full-width full-height"
+            curtain.style.backgroundColor = "rgba(0,0,0,0.5)"; curtain.style.zIndex = 2
+            //content wrapper
+            var wrapper = document.createElement("div"); wrapper.className = "relative"; wrapper.style.zIndex = 5
+            append(wrapper,[header,email,message,send])
+            append(container,[curtain,wrapper])
+            serviceTab.tab.style.backgroundImage = "url('" + image.toString() + "')"
+            append(serviceTab.tab,[container])
         }
         serviceTab.open()
     }
