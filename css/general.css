@@ -41,3 +41,13 @@ body.ss #ss-menu.closed{display:none}
 
 .dp-large{width:200px; height:200px}
 .dp-mid{width:150px; height:150px}
+
+/*layouts*/
+.grid-3 .grid-item{
+  width:30%;
+  margin-left:3%;
+  display:inline-block;
+}
+@media only screen and (max-width = 700px){
+  .grid-3. grid-item{width:47%}
+}
