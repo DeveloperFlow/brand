@@ -49,6 +49,6 @@ body.ss #ss-menu.closed{display:none}
   margin-top:3%;
   display:inline-block;
 }
-@media only screen and (max-width = 700px){
+@media only screen and (max-width: 700px){
   .grid-3 .grid-item{width:47%}
 }
